@@ -1,0 +1,18 @@
+.subMainContainer {
+    background-color: #fff;
+    border-radius: 15;
+  }
+  
+  .firstLine {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  
+  .secondLine {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .thirdLine{display: flex;
+    flex-direction: column;}
