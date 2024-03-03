@@ -3,7 +3,7 @@ import React from 'react';
 const TableLoadingPage = () => {
     return (
         <div>
-            TableLoadingPage is loading...
+            Data is loading...
         </div>
     );
 };

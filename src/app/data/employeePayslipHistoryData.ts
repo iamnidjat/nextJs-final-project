@@ -13,6 +13,8 @@ interface Payslip {
   communicationAllowance: number;
   inconvenienceAllowance: number;
   grossSalary: number;
+  tax: number;
+  employeePension: number;
   deductions: number;
   netSalary: number;
 }
@@ -34,6 +36,8 @@ const payslips: Payslip[] = [
     inconvenienceAllowance: 30,
     grossSalary: 1000,
     deductions: 400,
+    tax: 10,
+    employeePension: 10,
     netSalary: 600,
   },
   {
@@ -52,6 +56,8 @@ const payslips: Payslip[] = [
     inconvenienceAllowance: 30,
     grossSalary: 1000,
     deductions: 400,
+    tax: 10,
+    employeePension: 10,
     netSalary: 600,
   },
   {
@@ -70,6 +76,8 @@ const payslips: Payslip[] = [
     inconvenienceAllowance: 30,
     grossSalary: 1000,
     deductions: 400,
+    tax: 10,
+    employeePension: 10,
     netSalary: 600,
   },
   {
@@ -88,6 +96,8 @@ const payslips: Payslip[] = [
     inconvenienceAllowance: 30,
     grossSalary: 1000,
     deductions: 400,
+    tax: 10,
+    employeePension: 10,
     netSalary: 600,
   },
   {
@@ -106,6 +116,8 @@ const payslips: Payslip[] = [
     inconvenienceAllowance: 30,
     grossSalary: 1000,
     deductions: 400,
+    tax: 10,
+    employeePension: 10,
     netSalary: 600,
   },
   {
@@ -124,6 +136,8 @@ const payslips: Payslip[] = [
     inconvenienceAllowance: 30,
     grossSalary: 1000,
     deductions: 400,
+    tax: 10,
+    employeePension: 10,
     netSalary: 600,
   },
   {
@@ -142,6 +156,8 @@ const payslips: Payslip[] = [
     inconvenienceAllowance: 30,
     grossSalary: 1000,
     deductions: 400,
+    tax: 10,
+    employeePension: 10,
     netSalary: 600,
   },
   {
@@ -160,6 +176,8 @@ const payslips: Payslip[] = [
     inconvenienceAllowance: 30,
     grossSalary: 1000,
     deductions: 400,
+    tax: 10,
+    employeePension: 10,
     netSalary: 600,
   },
   {
@@ -178,6 +196,8 @@ const payslips: Payslip[] = [
     inconvenienceAllowance: 30,
     grossSalary: 1000,
     deductions: 400,
+    tax: 10,
+    employeePension: 10,
     netSalary: 600,
   },
   {
@@ -196,6 +216,8 @@ const payslips: Payslip[] = [
     inconvenienceAllowance: 30,
     grossSalary: 1000,
     deductions: 400,
+    tax: 10,
+    employeePension: 10,
     netSalary: 600,
   },
 ];

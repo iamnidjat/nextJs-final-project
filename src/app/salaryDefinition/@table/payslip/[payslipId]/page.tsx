@@ -27,6 +27,8 @@ const PayslipDetailPage = ({ params }: any) => {
           </div>
           <div>Gross Salary: {myPayslips.grossSalary}</div>
           <div>Deductions: {myPayslips.deductions}</div>
+          <div>Tax/PAYE: {myPayslips.tax}</div>
+          <div>Employee Pension: {myPayslips.employeePension}</div>
           <div>Net Salary: {myPayslips.netSalary}</div>
         </div>
       )}

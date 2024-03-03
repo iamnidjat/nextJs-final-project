@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import styles from "./page.module.css";
+import CustomButton from "@/app/components/CustomButton";
 
 const PayslipDefinitionTable = () => {
   const [data, setData] = useState<any>(null);
@@ -31,24 +33,43 @@ const PayslipDefinitionTable = () => {
   return (
     <div>
       <div>
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          <div>Payslips</div>
-          <button onClick={toCreatePayslip}>Create Payslips</button>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <div
+            style={{ color: "#272525", fontWeight: "800", fontSize: "18px" }}
+          >
+            Payslips
+          </div>
+          <CustomButton
+            backgroundColor="linear-gradient(135deg, #14ADD6 0%, #384295 100%)"
+            label="Create Payslip"
+            labelColor="#fff"
+            paddingHorizontal={50}
+            paddingVertical={10}
+            borderRadius={15}
+            borderColor="#14ADD6"
+            onClick={toCreatePayslip}
+          />
         </div>
 
-        <table>
+        <table className={styles.table}>
           <thead>
             <tr>
-              <th>S/N</th>
-              <th>Staff Name</th>
-              <th>Title</th>
-              <th>Level</th>
-              <th>Basic Salary</th>
-              <th>Allowance</th>
-              <th>Gross Salary</th>
-              <th>Deductions</th>
-              <th>Net Salary</th>
-              <th>Action</th>
+              <th className={styles.thStyle}>S/N</th>
+              <th className={styles.thStyle}>Staff Name</th>
+              <th className={styles.thStyle}>Title</th>
+              <th className={styles.thStyle}>Level</th>
+              <th className={styles.thStyle}>Basic Salary</th>
+              <th className={styles.thStyle}>Allowance</th>
+              <th className={styles.thStyle}>Gross Salary</th>
+              <th className={styles.thStyle}>Deductions</th>
+              <th className={styles.thStyle}>Net Salary</th>
+              <th className={styles.thStyle}>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -65,7 +86,12 @@ const PayslipDefinitionTable = () => {
                 <td>{employee.netSalary}</td>
                 <td>
                   <button
-                    style={{ color: "blue" }}
+                    style={{
+                      color: "blue",
+                      backgroundColor: "#F8F9FD",
+                      border: "none",
+                      cursor: "pointer",
+                    }}
                     onClick={() => viewMore(employee.id)}
                   >
                     View more
@@ -76,7 +102,15 @@ const PayslipDefinitionTable = () => {
           </tbody>
         </table>
       </div>
-      <div style={{ fontSize: "10px", fontWeight: "400", color: "#383838" }}>
+      <div
+        style={{
+          fontSize: "10px",
+          fontWeight: "400",
+          color: "#383838",
+          marginTop: "30px",
+          textAlign: "center",
+        }}
+      >
         Copyright © 2022 Relia Energy. All Rights Reserved
       </div>
     </div>

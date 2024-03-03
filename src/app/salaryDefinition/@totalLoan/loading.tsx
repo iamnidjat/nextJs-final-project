@@ -3,7 +3,7 @@ import React from 'react';
 const TotalLoanLoadingPage = () => {
     return (
         <div>
-            TotalLoan is loading...
+            Data is loading...
         </div>
     );
 };

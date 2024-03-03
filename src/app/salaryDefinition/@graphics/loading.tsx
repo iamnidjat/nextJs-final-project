@@ -3,7 +3,7 @@ import React from 'react';
 const GraphicsLoadingPage = () => {
     return (
         <div>
-            Graphic is loading...
+            Data is loading...
         </div>
     );
 };

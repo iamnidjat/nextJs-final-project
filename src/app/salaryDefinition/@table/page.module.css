@@ -1,0 +1,14 @@
+.navLink {
+  color: #515151;
+  margin: 10px;
+  font-size: "10px";
+  font-weight: "400";
+}
+
+.Link {
+  text-decoration: none;
+}
+
+.Link.active {
+  color: #14add6;
+}

@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useReducer, useState } from "react";
 import { useRouter } from "next/navigation";
+import styles from "./page.module.css";
+import CustomButton from "@/app/components/CustomButton";
 
 const SalaryDefinitionTable = () => {
   const [data, setData] = useState<any>(null);
@@ -46,22 +48,41 @@ const SalaryDefinitionTable = () => {
   return (
     <div>
       <div>
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          <div>Salary Definition</div>
-          <button onClick={toCreateSD}>Create Salary Definition</button>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <div
+            style={{ color: "#272525", fontWeight: "800", fontSize: "18px" }}
+          >
+            Salary Definition
+          </div>
+          <CustomButton
+            backgroundColor="linear-gradient(135deg, #14ADD6 0%, #384295 100%)"
+            label="Create Salary Definition"
+            labelColor="#fff"
+            paddingHorizontal={50}
+            paddingVertical={10}
+            borderRadius={15}
+            borderColor="#14ADD6"
+            onClick={toCreateSD}
+          />
         </div>
-        <table>
+        <table className={styles.table}>
           <thead>
             <tr>
-              <th>S/N</th>
-              <th>Title</th>
-              <th>Level</th>
-              <th>Basic Salary</th>
-              <th>Allowance</th>
-              <th>Gross Salary</th>
-              <th>Deductions</th>
-              <th>Net Salary</th>
-              <th>Action</th>
+              <th className={styles.thStyle}>S/N</th>
+              <th className={styles.thStyle}>Title</th>
+              <th className={styles.thStyle}>Level</th>
+              <th className={styles.thStyle}>Basic Salary</th>
+              <th className={styles.thStyle}>Allowance</th>
+              <th className={styles.thStyle}>Gross Salary</th>
+              <th className={styles.thStyle}>Deductions</th>
+              <th className={styles.thStyle}>Net Salary</th>
+              <th className={styles.thStyle}>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -77,11 +98,24 @@ const SalaryDefinitionTable = () => {
                 <td>{employee.netSalary}</td>
                 <td>
                   <div style={{ display: "flex", flexDirection: "row" }}>
-                    <button style={{ color: "blue" }} onClick={updateEmployee}>
+                    <button
+                      style={{
+                        color: "blue",
+                        backgroundColor: "#F8F9FD",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
+                      onClick={updateEmployee}
+                    >
                       Edit
                     </button>
                     <button
-                      style={{ color: "red" }}
+                      style={{
+                        color: "red",
+                        backgroundColor: "#F8F9FD",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
                       onClick={() => deleteEmployees(employee.id)}
                     >
                       Delete
@@ -93,7 +127,15 @@ const SalaryDefinitionTable = () => {
           </tbody>
         </table>
       </div>
-      <div style={{ fontSize: "10px", fontWeight: "400", color: "#383838" }}>
+      <div
+        style={{
+          fontSize: "10px",
+          fontWeight: "400",
+          color: "#383838",
+          marginTop: "30px",
+          textAlign: "center",
+        }}
+      >
         Copyright © 2022 Relia Energy. All Rights Reserved
       </div>
     </div>

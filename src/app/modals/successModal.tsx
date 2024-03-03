@@ -9,20 +9,20 @@ const SuccessModal = ({ isOpen, onClose }: any) => {
   return (
     <div className={styles.overlay}>
       <div onClick={onClose} className={styles.content}>
-        <SuccessIcon></SuccessIcon>
-        <div>Congratulations</div>
-        <div>Your salary definition has been created succesfully</div>
+        <SuccessIcon style={{marginBottom: "20px"}}></SuccessIcon>
+        <div style={{marginBottom: "10px", fontWeight: "800"}}>Congratulations</div>
+        <div style={{marginBottom: "10px"}}>Your salary definition has been</div>
+        <div style={{marginBottom: "20px"}}>created succesfully</div>
         <CustomButton
           backgroundColor="linear-gradient(135deg, #14ADD6 0%, #384295 100%)"
           label="Ok"
           labelColor="#fff"
-          paddingHorizontal={150}
-          paddingVertical={10}
+          paddingHorizontal={40}
+          paddingVertical={20}
           borderRadius={15}
           borderColor="#14ADD6"
-          onClick={() => {}}
+          onClick={onClose}
         ></CustomButton>
-        <button onClick={onClose}>Close</button>
       </div>
     </div>
   );

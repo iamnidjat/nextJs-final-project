@@ -3,7 +3,7 @@ import React from 'react';
 const NetSalaryLoadingPage = () => {
     return (
         <div>
-            NetSalary is loading...
+            Data is loading...
         </div>
     );
 };

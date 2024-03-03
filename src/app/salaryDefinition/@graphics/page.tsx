@@ -29,9 +29,9 @@ const SalaryDefinitionGraphics = () => {
 
   return (
     <div>
-      <div>Annual payroll summary</div>
+      <div style={{color: "#272525", fontWeight: "800", fontSize: "18px"}}>Annual payroll summary</div>
       <BarChart  
-        width={800}
+        width={550}
         height={300}
         data={data}
         margin={{
@@ -49,9 +49,9 @@ const SalaryDefinitionGraphics = () => {
         />
         <Tooltip />
         <Legend />
-        <Bar dataKey="Net Salary" stackId="a" fill="#82ca9d" />
-        <Bar dataKey="tax" stackId="a" fill="#8884d8" />
-        <Bar dataKey="loan" stackId="a" fill="red" />
+        <Bar dataKey="Net Salary" stackId="a" fill="#248CD8" />
+        <Bar dataKey="tax" stackId="a" fill="#F29425" />
+        <Bar dataKey="loan" stackId="a" fill="#A601FF" />
       </BarChart>
     </div>
   );

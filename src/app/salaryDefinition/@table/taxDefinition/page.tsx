@@ -1,6 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import styles from "./page.module.css";
+import CustomButton from "@/app/components/CustomButton";
 
 const TaxDefinitionTable = () => {
   const [data, setData] = useState<any>(null);
@@ -46,17 +48,36 @@ const TaxDefinitionTable = () => {
   return (
     <div>
       <div>
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          <div>Tax Types</div>
-          <button onClick={toCreateTD}>Create Tax type</button>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <div
+            style={{ color: "#272525", fontWeight: "800", fontSize: "18px" }}
+          >
+            Tax Types
+          </div>
+          <CustomButton
+            backgroundColor="linear-gradient(135deg, #14ADD6 0%, #384295 100%)"
+            label="Create Tax Definition"
+            labelColor="#fff"
+            paddingHorizontal={50}
+            paddingVertical={10}
+            borderRadius={15}
+            borderColor="#14ADD6"
+            onClick={toCreateTD}
+          />
         </div>
 
-        <table>
+        <table className={styles.table}>
           <thead>
             <tr>
-              <th>S/N</th>
-              <th>Tax Type</th>
-              <th>% value</th>
+              <th className={styles.thStyle}>S/N</th>
+              <th className={styles.thStyle}>Tax Type</th>
+              <th className={styles.thStyle}>% value</th>
             </tr>
           </thead>
           <tbody>
@@ -67,11 +88,24 @@ const TaxDefinitionTable = () => {
                 <td>{tax.value}</td>
                 <td>
                   <div style={{ display: "flex", flexDirection: "row" }}>
-                    <button style={{ color: "blue" }} onClick={updateTaxes}>
+                    <button
+                      style={{
+                        color: "blue",
+                        backgroundColor: "#F8F9FD",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
+                      onClick={updateTaxes}
+                    >
                       Edit
                     </button>
                     <button
-                      style={{ color: "red" }}
+                      style={{
+                        color: "red",
+                        backgroundColor: "#F8F9FD",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
                       onClick={() => deleteTaxes(tax.id)}
                     >
                       Delete
@@ -83,7 +117,15 @@ const TaxDefinitionTable = () => {
           </tbody>
         </table>
       </div>
-      <div style={{ fontSize: "10px", fontWeight: "400", color: "#383838" }}>
+      <div
+        style={{
+          fontSize: "10px",
+          fontWeight: "400",
+          color: "#383838",
+          marginTop: "30px",
+          textAlign: "center",
+        }}
+      >
         Copyright © 2022 Relia Energy. All Rights Reserved
       </div>
     </div>

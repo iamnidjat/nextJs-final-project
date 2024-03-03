@@ -3,7 +3,7 @@ import React from 'react';
 const CreatePayslipLoadingPage = () => {
     return (
         <div>
-            Create SPayslip page is loading...
+            Data is loading...
         </div>
     );
 };

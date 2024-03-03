@@ -11,7 +11,7 @@ const SalaryDefinitionTotalLoan = () => {
   useEffect(() => {
     const myNumber = getRandomNumber(1000000, 10000000);
     const myPercent = getRandomNumber(1, 5);
-    setNumber(myNumber);
+    setNumber(myNumber.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}));
     setPercent(myPercent);
   }, []);
 
@@ -25,12 +25,12 @@ const SalaryDefinitionTotalLoan = () => {
             marginBottom: "30px",
           }}
         >
-          <div>
+          <div style={{marginRight: "10px"}}>
             <div
               style={{
                 color: "#272525",
                 fontWeight: "800",
-                fontSize: "40px",
+                fontSize: "25px",
                 marginBottom: "10px",
               }}
             >

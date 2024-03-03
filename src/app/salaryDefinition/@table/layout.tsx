@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import styles from "./page.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,10 +17,30 @@ export default function RootLayout({
 }>) {
   return (
     <div>
-      <div>
-        <Link href="/salaryDefinition/salaryDefinition" style={{margin: "10px", textDecoration: 'none'}}>Go to salaryDefinition</Link>
-        <Link href="/salaryDefinition/taxDefinition" style={{margin: "10px", textDecoration: 'none'}}>Go to taxDefinition</Link>
-        <Link href="/salaryDefinition/payslip" style={{margin: "10px", textDecoration: 'none'}}>Go to payslip</Link>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+        }}
+      >
+        <Link
+          className={styles.Link}
+          passHref
+          href="/salaryDefinition/salaryDefinition"
+        >
+          <div className={styles.navLink}>Salary Breakdowns</div>
+        </Link>
+        <Link
+          className={styles.Link}
+          passHref
+          href="/salaryDefinition/taxDefinition"
+        >
+          <div className={styles.navLink}>Tax Definitions</div>
+        </Link>
+        <Link className={styles.Link} passHref href="/salaryDefinition/payslip">
+          <div className={styles.navLink}>Payslips</div>
+        </Link>
       </div>
       <div className={inter.className}>{children}</div>
     </div>
