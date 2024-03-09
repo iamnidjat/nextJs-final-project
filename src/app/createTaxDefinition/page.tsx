@@ -12,23 +12,29 @@ import SuccessModal from "../modals/successModal";
 const CreateTaxDefinition = () => {
   const router = useRouter();
   const [taxType, setTaxType] = useState<string>();
-  const [value, setValue] = useState<number>();
+  const [value, setValue] = useState<number>(0);
   const [showModal, setShowModal] = useState(false);
 
   const addTax = async () => {
-    try {
-      const res = await fetch("createTaxDefinition/api", {
-        method: "POST",
-        body: JSON.stringify({ taxType, value }),
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
+    if (taxType !== "" && value >= 0) {
+      try {
+        const res = await fetch("createTaxDefinition/api", {
+          method: "POST",
+          body: JSON.stringify({ taxType, value }),
+          headers: {
+            "Content-type": "application/json",
+          },
+        });
 
-      setShowModal(true);
-      router.push("/salaryDefinition/taxDefinition");
-    } catch (error) {
-      console.error("Error adding a tax:", error);
+        setShowModal(true);
+        setTimeout(() => {
+          router.push("/salaryDefinition/taxDefinition");
+        }, 5000);
+      } catch (error) {
+        console.error("Error adding a tax:", error);
+      }
+    } else {
+      alert("Incorrect data! Fill in all fields!");
     }
   };
 
@@ -58,9 +64,7 @@ const CreateTaxDefinition = () => {
           <div style={{ marginLeft: "65px", marginBottom: "30px" }}>
             <CustomLabel
               label="Create Tax Definition"
-              height={30}
-              color="black"
-              weight={800}
+              styles={labelStyles}
             ></CustomLabel>
           </div>
           <div className={styles.firstLine}>
@@ -68,12 +72,7 @@ const CreateTaxDefinition = () => {
               <div>Tax type</div>
               <CustomInputText
                 placeholder="Enter tax name"
-                paddingLeft={5}
-                paddingTop={10}
-                paddingRight={100}
-                paddingBottom={10}
-                borderColor="#D0D0D0"
-                borderRadius={8}
+                styles={inputStyles}
                 value={taxType}
                 onChange={setTaxType}
               ></CustomInputText>
@@ -82,12 +81,7 @@ const CreateTaxDefinition = () => {
               <div>% value</div>
               <CustomInputText
                 placeholder="Enter % value"
-                paddingLeft={5}
-                paddingTop={10}
-                paddingRight={100}
-                paddingBottom={10}
-                borderColor="#D0D0D0"
-                borderRadius={8}
+                styles={inputStyles}
                 value={value}
                 onChange={setValue}
               ></CustomInputText>
@@ -95,13 +89,8 @@ const CreateTaxDefinition = () => {
           </div>
           <div className={styles.secondLine}>
             <CustomButton
-              backgroundColor="linear-gradient(135deg, #14ADD6 0%, #384295 100%)"
+              styles={buttonStyles}
               label="Create"
-              labelColor="#fff"
-              paddingHorizontal={150}
-              paddingVertical={10}
-              borderRadius={15}
-              borderColor="#14ADD6"
               onClick={addTax}
             ></CustomButton>
           </div>
@@ -123,3 +112,26 @@ const CreateTaxDefinition = () => {
 };
 
 export default CreateTaxDefinition;
+
+const buttonStyles = {
+  background: "linear-gradient(135deg, #14ADD6 0%, #384295 100%)",
+  padding: "10px 120px",
+  borderRadius: "15px",
+  borderColor: "#14ADD6",
+  color: "#fff",
+  cursor: "pointer",
+  outline: "none",
+  border: "none",
+};
+
+const inputStyles = {
+  padding: " 10px 120px 10px 5px",
+  borderRadius: "8px",
+  borderColor: "#D0D0D0",
+};
+
+const labelStyles = {
+  color: "black",
+  height: "30px",
+  fontWeight: "800",
+};

@@ -1,18 +1,22 @@
 import React from "react";
 
-const CustomLabel = ({
-  label,
-  height,
-  weight,
-  color,
-}: {
-  label: string;
-  height: number;
-  weight: number;
+interface LabelStyles {
+  height: string;
+  fontWeight: string;
   color: string;
+}
+
+interface CustomLabelProps {
+  styles: LabelStyles;
+  label: string;
+}
+
+const CustomLabel:React.FC<CustomLabelProps> = ({
+  label,
+  styles,
 }) => {
   return (
-    <div style={{ height: `${height}px`, color: color, fontWeight: weight }}>
+    <div style={styles}>
       {label}
     </div>
   );

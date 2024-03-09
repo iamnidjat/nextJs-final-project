@@ -1,23 +1,19 @@
 "use client";
-import ArrowUpIcon from "@/app/icons/ArrowUpIcon";
-import YellowIcon from "@/app/icons/YellowIcon";
 import React, { useEffect, useState } from "react";
-import { getRandomNumber } from "../@graphics/page";
+import { getRandomNumber } from "../../salaryDefinition/@graphics/page";
+import PurpleBudgetIcon from "@/app/icons/PurpleBudgetIcon";
 
-const SalaryDefinitionGrossSalary = () => {
+const OfficeBudgetTotalBalance = () => {
   const [number, setNumber] = useState<any>();
-  const [percent, setPercent] = useState<any>();
 
   useEffect(() => {
     const myNumber = getRandomNumber(1000000, 10000000);
-    const myPercent = getRandomNumber(1, 5);
     setNumber(
       myNumber.toLocaleString(undefined, {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       })
     );
-    setPercent(myPercent);
   }, []);
 
   return (
@@ -38,18 +34,14 @@ const SalaryDefinitionGrossSalary = () => {
               marginBottom: "10px",
             }}
           >
-            {number}
+             ₦‎ {number}
           </div>
-          <div>Gross Salary this month</div>
+          <div>Total Annual Budget</div>
         </div>
-        <YellowIcon></YellowIcon>
-      </div>
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        <ArrowUpIcon></ArrowUpIcon>
-        <div>{percent} % more than last month</div>
+        <PurpleBudgetIcon></PurpleBudgetIcon>
       </div>
     </div>
   );
 };
 
-export default SalaryDefinitionGrossSalary;
+export default OfficeBudgetTotalBalance;

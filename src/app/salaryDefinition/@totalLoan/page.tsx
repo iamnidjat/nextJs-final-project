@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { getRandomNumber } from "../@graphics/page";
-import BrownIcon from "@/app/icons/brownIcon";
-import ArrowDownIcon from "@/app/icons/arrowDownIcon";
+import BrownIcon from "@/app/icons/BrownIcon";
+import ArrowDownIcon from "@/app/icons/ArrowDownIcon";
 
 const SalaryDefinitionTotalLoan = () => {
   const [number, setNumber] = useState<any>();
@@ -11,7 +11,12 @@ const SalaryDefinitionTotalLoan = () => {
   useEffect(() => {
     const myNumber = getRandomNumber(1000000, 10000000);
     const myPercent = getRandomNumber(1, 5);
-    setNumber(myNumber.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}));
+    setNumber(
+      myNumber.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })
+    );
     setPercent(myPercent);
   }, []);
 
@@ -25,7 +30,7 @@ const SalaryDefinitionTotalLoan = () => {
             marginBottom: "30px",
           }}
         >
-          <div style={{marginRight: "10px"}}>
+          <div style={{ marginRight: "10px" }}>
             <div
               style={{
                 color: "#272525",

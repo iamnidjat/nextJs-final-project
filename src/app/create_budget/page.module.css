@@ -1,0 +1,15 @@
+.subMainContainer {
+  background-color: #fff;
+  border-radius: 15;
+}
+
+.firstLine {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.secondLine {
+  margin-left: 70px;
+}

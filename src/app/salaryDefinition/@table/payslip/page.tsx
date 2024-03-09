@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./page.module.css";
+import styles from "../page.module.css";
 import CustomButton from "@/app/components/CustomButton";
 
 const PayslipDefinitionTable = () => {
@@ -46,13 +46,8 @@ const PayslipDefinitionTable = () => {
             Payslips
           </div>
           <CustomButton
-            backgroundColor="linear-gradient(135deg, #14ADD6 0%, #384295 100%)"
+            styles={buttonStyles}
             label="Create Payslip"
-            labelColor="#fff"
-            paddingHorizontal={50}
-            paddingVertical={10}
-            borderRadius={15}
-            borderColor="#14ADD6"
             onClick={toCreatePayslip}
           />
         </div>
@@ -118,3 +113,14 @@ const PayslipDefinitionTable = () => {
 };
 
 export default PayslipDefinitionTable;
+
+const buttonStyles = {
+  background: "linear-gradient(135deg, #14ADD6 0%, #384295 100%)",
+  padding: "10px 50px",
+  borderRadius: "15px",
+  borderColor: "#14ADD6",
+  color: "#fff",
+  cursor: "pointer",
+  outline: "none",
+  border: "none",
+};

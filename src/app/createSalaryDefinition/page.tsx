@@ -27,26 +27,38 @@ const CreateSalaryDefinition = () => {
   const [showModal, setShowModal] = useState(false);
 
   const addSalaryDefinition = async () => {
-    try {
-      const res = await fetch("createSalaryDefinition/api", {
-        method: "POST",
-        body: JSON.stringify({
-          title,
-          level,
-          basicSalary,
-          allowance,
-          grossSalary,
-          deductions,
-          netSalary,
-        }),
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
-      setShowModal(true);
-      router.push("/salaryDefinition/salaryDefinition");
-    } catch (error) {
-      console.error("Error adding a tax:", error);
+    if (
+      basicSalary >= 0 &&
+      allowance >= 0 &&
+      grossSalary >= 0 &&
+      deductions >= 0 &&
+      netSalary >= 0
+    ) {
+      try {
+        const res = await fetch("createSalaryDefinition/api", {
+          method: "POST",
+          body: JSON.stringify({
+            title,
+            level,
+            basicSalary,
+            allowance,
+            grossSalary,
+            deductions,
+            netSalary,
+          }),
+          headers: {
+            "Content-type": "application/json",
+          },
+        });
+        setShowModal(true);
+        setTimeout(() => {
+          router.push("/salaryDefinition/salaryDefinition");
+        }, 5000);
+      } catch (error) {
+        console.error("Error adding a tax:", error);
+      }
+    } else {
+      alert("Incorrect data! Fill in all fields!");
     }
   };
 
@@ -60,12 +72,7 @@ const CreateSalaryDefinition = () => {
       <div>{label}</div>
       <CustomInputText
         placeholder={placeholder}
-        paddingLeft={5}
-        paddingTop={10}
-        paddingRight={120}
-        paddingBottom={10}
-        borderColor="#D0D0D0"
-        borderRadius={8}
+        styles={inputStyles}
         value={value}
         onChange={onChange}
       />
@@ -76,12 +83,7 @@ const CreateSalaryDefinition = () => {
     <div>
       <div>{label}</div>
       <CustomOption
-        paddingLeft={5}
-        paddingTop={10}
-        paddingRight={200}
-        paddingBottom={10}
-        borderColor="#D0D0D0"
-        borderRadius={8}
+        styles={optionStyles}
         options={options}
         value={value}
         onChange={onChange}
@@ -98,12 +100,12 @@ const CreateSalaryDefinition = () => {
           color: "#14ADD6",
           fontWeight: "400",
           fontSize: "16px",
-          marginLeft: "20px"
+          marginLeft: "20px",
         }}
       >
         &lt; Back
       </Link>
-      <div style={{marginTop: "20px"}}>
+      <div style={{ marginTop: "20px" }}>
         <SuccessModal
           isOpen={showModal}
           onClose={() => {
@@ -112,12 +114,10 @@ const CreateSalaryDefinition = () => {
         />
 
         <div className={styles.subMainContainer}>
-          <div  style={{marginLeft: "65px"}}>
+          <div style={{ marginLeft: "65px" }}>
             <CustomLabel
               label="Create Salary Definition"
-              height={30}
-              color="black"
-              weight={800}
+              styles={labelStyles}
             />
           </div>
           <div className={styles.firstLine}>
@@ -159,13 +159,8 @@ const CreateSalaryDefinition = () => {
             )}
             <div style={{ marginLeft: "120px", marginTop: "20px" }}>
               <CustomButton
-                backgroundColor="linear-gradient(135deg, #14ADD6 0%, #384295 100%)"
+                styles={buttonStyles}
                 label="Create"
-                labelColor="#fff"
-                paddingHorizontal={150}
-                paddingVertical={10}
-                borderRadius={15}
-                borderColor="#14ADD6"
                 onClick={addSalaryDefinition}
               />
             </div>
@@ -188,3 +183,32 @@ const CreateSalaryDefinition = () => {
 };
 
 export default CreateSalaryDefinition;
+
+const buttonStyles = {
+  background: "linear-gradient(135deg, #14ADD6 0%, #384295 100%)",
+  padding: "10px 120px",
+  borderRadius: "15px",
+  borderColor: "#14ADD6",
+  color: "#fff",
+  cursor: "pointer",
+  outline: "none",
+  border: "none",
+};
+
+const inputStyles = {
+  padding: " 10px 120px 10px 5px",
+  borderRadius: "8px",
+  borderColor: "#D0D0D0",
+};
+
+const optionStyles = {
+  padding: " 10px 200px 10px 5px",
+  borderRadius: "8px",
+  borderColor: "#D0D0D0",
+};
+
+const labelStyles = {
+  color: "black",
+  height: "30px",
+  fontWeight: "800",
+};

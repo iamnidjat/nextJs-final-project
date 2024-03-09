@@ -11,6 +11,8 @@ import NotificationsIcon from "../../public/icons/NotificationsIcon";
 import ProfileIcon from "../../public/icons/ProfileIcon";
 import ArrowDown from "../../public/icons/ArrowDown";
 import HappyEmoji from "../../public/icons/HappyEmoji";
+import ArrowDownIcon from "./icons/ArrowDownIcon";
+import BudgetIcon from "../../public/icons/BudgetIcon";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -21,6 +23,12 @@ const links = [
     title: "Payment Voucher",
     href: "/payment_voucher",
     icon: "StaffIcon",
+    isActive: false,
+  },
+  {
+    title: "Office Budget",
+    href: "/office_budget",
+    icon: "BudgetIcon",
     isActive: false,
   },
 ];

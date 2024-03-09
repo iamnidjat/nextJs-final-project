@@ -1,35 +1,29 @@
 import React, { ChangeEvent } from "react";
 
-const CustomInputText = ({
+interface InputStyles {
+  padding: string;
+  borderRadius: string;
+  borderColor: string;
+}
+
+interface CustomInputProps {
+  placeholder: string;
+  onChange: any;
+  styles: InputStyles;
+  value: any;
+}
+
+const CustomInputText: React.FC<CustomInputProps> = ({
   placeholder,
-  paddingLeft,
-  paddingRight,
-  paddingTop,
-  paddingBottom,
-  borderRadius,
-  borderColor,
+  styles,
   value,
   onChange,
-}: {
-  placeholder: string;
-  paddingLeft: number;
-  paddingRight: number;
-  paddingTop: number;
-  paddingBottom: number;
-  borderRadius: number;
-  borderColor: string;
-  value: any;
-  onChange: any;
 }) => {
   return (
     <input
       type="text"
       placeholder={placeholder}
-      style={{
-        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px`,
-        borderColor: borderColor,
-        borderRadius: borderRadius,
-      }}
+      style={styles}
       value={value}
       onChange={(e) => onChange(e.target.value)}
     />

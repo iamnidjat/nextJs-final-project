@@ -1,11 +1,22 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import styles from "./page.module.css";
+import styles from "../page.module.css";
 import CustomButton from "@/app/components/CustomButton";
 
 const TaxDefinitionTable = () => {
   const [data, setData] = useState<any>(null);
+
+  const [sNumber, setSNumber] = useState<any>(null);
+  const [originalSNumber, setOriginalSNumber] = useState<any>(null);
+
+  const [taxType, setTaxType] = useState<any>(null);
+  const [originalTaxType, setOriginalTaxType] = useState<any>(null);
+
+  const [value, setValue] = useState<any>(null);
+  const [originalValue, setOriginalValue] = useState<any>(null);
+
+  const [editingTaxId, setEditingTaxId] = useState<number | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -37,12 +48,41 @@ const TaxDefinitionTable = () => {
     }
   };
 
-  const updateTaxes = () => {
-    alert("Заглушка");
+  const updateTaxes = async (id: number) => {
+    try {
+      const res = await fetch("http://localhost:3000/taxDefinition/api", {
+        method: "PATCH",
+        body: JSON.stringify({
+          sNumber: sNumber === null ? originalSNumber : sNumber,
+          taxType: taxType === null ? originalTaxType : taxType,
+          value: value === null ? originalValue : value,
+          id,
+        }),
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+      setEditingTaxId(null);
+      await fetchTaxes();
+    } catch (error) {
+      console.error("Error updating a tax:", error);
+    }
   };
 
   const toCreateTD = () => {
     router.push("/createTaxDefinition");
+  };
+
+  const enterEditMode = (tax: any) => {
+    setOriginalSNumber(tax.serialNumber);
+    setOriginalTaxType(tax.taxType);
+    setOriginalValue(tax.value);
+
+    setSNumber(tax.serialNumber);
+    setTaxType(tax.taxType);
+    setValue(tax.value);
+
+    setEditingTaxId(tax.id);
   };
 
   return (
@@ -61,17 +101,11 @@ const TaxDefinitionTable = () => {
             Tax Types
           </div>
           <CustomButton
-            backgroundColor="linear-gradient(135deg, #14ADD6 0%, #384295 100%)"
+            styles={buttonStyles}
             label="Create Tax Definition"
-            labelColor="#fff"
-            paddingHorizontal={50}
-            paddingVertical={10}
-            borderRadius={15}
-            borderColor="#14ADD6"
             onClick={toCreateTD}
           />
         </div>
-
         <table className={styles.table}>
           <thead>
             <tr>
@@ -83,22 +117,60 @@ const TaxDefinitionTable = () => {
           <tbody>
             {data?.map((tax: any) => (
               <tr key={tax.id}>
-                <td>{tax.serialNumber}</td>
-                <td>{tax.taxType}</td>
-                <td>{tax.value}</td>
+                {!editingTaxId || editingTaxId !== tax.id ? (
+                  <>
+                    <td>{tax.serialNumber}</td>
+                    <td>{tax.taxType}</td>
+                    <td>{tax.value}</td>
+                  </>
+                ) : (
+                  <>
+                    <input
+                      type="text"
+                      value={sNumber}
+                      onChange={(e) => setSNumber(e.target.value)}
+                    />
+                    <input
+                      type="text"
+                      value={taxType}
+                      onChange={(e) => setTaxType(e.target.value)}
+                    />
+                    <input
+                      type="text"
+                      value={value}
+                      onChange={(e) => setValue(e.target.value)}
+                    />
+                  </>
+                )}
                 <td>
                   <div style={{ display: "flex", flexDirection: "row" }}>
-                    <button
-                      style={{
-                        color: "blue",
-                        backgroundColor: "#F8F9FD",
-                        border: "none",
-                        cursor: "pointer",
-                      }}
-                      onClick={updateTaxes}
-                    >
-                      Edit
-                    </button>
+                    <div>
+                      {!editingTaxId || editingTaxId !== tax.id ? (
+                        <button
+                          style={{
+                            color: "blue",
+                            backgroundColor: "#F8F9FD",
+                            border: "none",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => enterEditMode(tax)}
+                        >
+                          Edit
+                        </button>
+                      ) : (
+                        <button
+                          style={{
+                            color: "blue",
+                            backgroundColor: "#F8F9FD",
+                            border: "none",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => updateTaxes(tax.id)}
+                        >
+                          Update
+                        </button>
+                      )}
+                    </div>
                     <button
                       style={{
                         color: "red",
@@ -133,3 +205,14 @@ const TaxDefinitionTable = () => {
 };
 
 export default TaxDefinitionTable;
+
+const buttonStyles = {
+  background: "linear-gradient(135deg, #14ADD6 0%, #384295 100%)",
+  padding: "10px 50px",
+  borderRadius: "15px",
+  borderColor: "#14ADD6",
+  color: "#fff",
+  cursor: "pointer",
+  outline: "none",
+  border: "none",
+};

@@ -35,34 +35,53 @@ const CreatePayslip = () => {
   const [showModal, setShowModal] = useState(false);
 
   const addPayslip = async () => {
-    try {
-      const res = await fetch("createPayslip/api", {
-        method: "POST",
-        body: JSON.stringify({
-          staffName,
-          title,
-          level,
-          basicSalary,
-          housingAllowance,
-          transportAllowance,
-          utilityAllowance,
-          productivityAllowance,
-          communicationAllowance,
-          inconvenienceAllowance,
-          grossSalary,
-          deductions,
-          tax,
-          pension,
-          netSalary,
-        }),
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
-      setShowModal(true);
-      router.push("/salaryDefinition/payslip");
-    } catch (error) {
-      console.error("Error adding a tax:", error);
+    if (
+      basicSalary >= 0 &&
+      housingAllowance >= 0 &&
+      transportAllowance >= 0 &&
+      utilityAllowance >= 0 &&
+      productivityAllowance >= 0 &&
+      communicationAllowance >= 0 &&
+      inconvenienceAllowance >= 0 &&
+      grossSalary >= 0 &&
+      deductions >= 0 &&
+      netSalary >= 0 &&
+      tax >= 0 &&
+      pension >= 0
+    ) {
+      try {
+        const res = await fetch("createPayslip/api", {
+          method: "POST",
+          body: JSON.stringify({
+            staffName,
+            title,
+            level,
+            basicSalary,
+            housingAllowance,
+            transportAllowance,
+            utilityAllowance,
+            productivityAllowance,
+            communicationAllowance,
+            inconvenienceAllowance,
+            grossSalary,
+            deductions,
+            tax,
+            pension,
+            netSalary,
+          }),
+          headers: {
+            "Content-type": "application/json",
+          },
+        });
+        setShowModal(true);
+        setTimeout(() => {
+          router.push("/salaryDefinition/payslip");
+        }, 5000);
+      } catch (error) {
+        console.error("Error adding a tax:", error);
+      }
+    } else {
+      alert("Incorrect data! Fill in all fields!");
     }
   };
 
@@ -76,12 +95,7 @@ const CreatePayslip = () => {
       <div>{label}</div>
       <CustomInputText
         placeholder={placeholder}
-        paddingLeft={5}
-        paddingTop={10}
-        paddingRight={120}
-        paddingBottom={10}
-        borderColor="#D0D0D0"
-        borderRadius={8}
+        styles={inputStyles}
         value={value}
         onChange={onChange}
       />
@@ -92,12 +106,7 @@ const CreatePayslip = () => {
     <div>
       <div>{label}</div>
       <CustomOption
-        paddingLeft={5}
-        paddingTop={10}
-        paddingRight={200}
-        paddingBottom={10}
-        borderColor="#D0D0D0"
-        borderRadius={8}
+        styles={optionStyles}
         options={options}
         value={value}
         onChange={onChange}
@@ -125,20 +134,10 @@ const CreatePayslip = () => {
         <div>
           <div className={styles.subMainContainer}>
             <div style={{ marginLeft: "65px", marginBottom: "30px" }}>
-              <CustomLabel
-                label="Create Payslip"
-                height={30}
-                color="black"
-                weight={800}
-              />
+              <CustomLabel label="Create Payslip" styles={labelStyles} />
             </div>
             <div>
-              <CustomLabel
-                label="Basic Information"
-                height={20}
-                color="black"
-                weight={800}
-              />
+              <CustomLabel label="Basic Information" styles={labelStyles} />
             </div>
             <div className={styles.firstLine}>
               {renderOptionField("Staff name", staffName, setStaffName)}
@@ -151,12 +150,7 @@ const CreatePayslip = () => {
         <div>
           <div className={styles.subMainContainer}>
             <div>
-              <CustomLabel
-                label="Salary Structure"
-                height={30}
-                color="black"
-                weight={800}
-              />
+              <CustomLabel label="Salary Structure" styles={labelStyles} />
             </div>
             <div className={styles.firstLine}>
               {renderInputField(
@@ -224,12 +218,7 @@ const CreatePayslip = () => {
         <div>
           <div className={styles.subMainContainer}>
             <div>
-              <CustomLabel
-                label="Deductions"
-                height={30}
-                color="black"
-                weight={800}
-              />
+              <CustomLabel label="Deductions" styles={labelStyles} />
             </div>
             <div className={styles.firstLine}>
               {renderInputField("TAX/PAYE", "Enter amount", tax, setTax)}
@@ -252,12 +241,7 @@ const CreatePayslip = () => {
         <div>
           <div className={styles.subMainContainer}>
             <div>
-              <CustomLabel
-                label="Net Salary"
-                height={30}
-                color="black"
-                weight={800}
-              />
+              <CustomLabel label="Net Salary" styles={labelStyles} />
             </div>
             <div className={styles.thirdLine}>
               {renderInputField(
@@ -268,13 +252,8 @@ const CreatePayslip = () => {
               )}
               <div style={{ marginTop: "30px" }}>
                 <CustomButton
-                  backgroundColor="linear-gradient(135deg, #14ADD6 0%, #384295 100%)"
+                  styles={buttonStyles}
                   label="Create"
-                  labelColor="#fff"
-                  paddingHorizontal={150}
-                  paddingVertical={10}
-                  borderRadius={15}
-                  borderColor="#14ADD6"
                   onClick={addPayslip}
                 />
               </div>
@@ -298,3 +277,32 @@ const CreatePayslip = () => {
 };
 
 export default CreatePayslip;
+
+const buttonStyles = {
+  background: "linear-gradient(135deg, #14ADD6 0%, #384295 100%)",
+  padding: "10px 120px",
+  borderRadius: "15px",
+  borderColor: "#14ADD6",
+  color: "#fff",
+  cursor: "pointer",
+  outline: "none",
+  border: "none",
+};
+
+const inputStyles = {
+  padding: " 10px 120px 10px 5px",
+  borderRadius: "8px",
+  borderColor: "#D0D0D0",
+};
+
+const optionStyles = {
+  padding: " 10px 200px 10px 5px",
+  borderRadius: "8px",
+  borderColor: "#D0D0D0",
+};
+
+const labelStyles = {
+  color: "black",
+  height: "30px",
+  fontWeight: "800",
+};

@@ -1,44 +1,32 @@
 import React from "react";
 
-interface CustomButtonProps {
-  backgroundColor: string;
-  label: string;
-  labelColor: string;
-  paddingHorizontal: number;
-  paddingVertical: number;
-  borderRadius: number;
+interface ButtonStyles {
+  background: string;
+  padding: string;
+  borderRadius: string;
   borderColor: string;
+  color: string;
+  cursor?: string;
+  outline?: string;
+  border?: string;
+}
+
+interface CustomButtonProps {
+  label: string;
   onClick: () => void;
+  styles: ButtonStyles;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
-  backgroundColor,
   label,
-  labelColor,
-  paddingHorizontal,
-  paddingVertical,
-  borderRadius,
-  borderColor,
   onClick,
+  styles,
 }) => {
   return (
-    <button
-      style={{
-        background: backgroundColor,
-        padding: `${paddingVertical}px ${paddingHorizontal}px`,
-        borderRadius: `${borderRadius}px`,
-        borderColor: borderColor,
-        color: labelColor,
-        cursor: 'pointer', 
-        outline: 'none', 
-        border: 'none', 
-      }}
-      onClick={onClick}
-    >
+    <button style={styles} onClick={onClick}>
       {label}
     </button>
   );
 };
 
 export default CustomButton;
-

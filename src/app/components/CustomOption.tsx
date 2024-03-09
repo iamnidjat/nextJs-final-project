@@ -1,35 +1,29 @@
 import React from "react";
 
-const CustomOption = ({
+interface OptionStyles {
+  padding: string;
+  borderRadius: string;
+  borderColor: string;
+}
+
+interface CustomOptionProps {
+  options: Option[];
+  onChange: any;
+  styles: OptionStyles;
+  value: any;
+}
+
+const CustomOption: React.FC<CustomOptionProps> = ({
   options,
-  paddingLeft,
-  paddingRight,
-  paddingTop,
-  paddingBottom,
-  borderRadius,
-  borderColor,
+  styles,
   value,
   onChange,
-}: {
-  options: Option[];
-  paddingLeft: number;
-  paddingRight: number;
-  paddingTop: number;
-  paddingBottom: number;
-  borderRadius: number;
-  borderColor: string;
-  value: any;
-  onChange: any;
 }) => {
   return (
     <select
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      style={{
-        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px`,
-        borderColor: borderColor,
-        borderRadius: borderRadius,
-      }}
+      style={styles}
     >
       {options.map((option, index) => (
         <option key={index} value={option.value}>

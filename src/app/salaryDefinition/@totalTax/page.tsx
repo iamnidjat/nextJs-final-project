@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { getRandomNumber } from "../@graphics/page";
-import ArrowDownIcon from "@/app/icons/arrowDownIcon";
-import PurpleIcon from "@/app/icons/purpleIcon";
+import ArrowDownIcon from "@/app/icons/ArrowDownIcon";
+import PurpleIcon from "@/app/icons/PurpleIcon";
 
 const SalaryDefinitionTotalTax = () => {
   const [number, setNumber] = useState<any>();
@@ -11,7 +11,12 @@ const SalaryDefinitionTotalTax = () => {
   useEffect(() => {
     const myNumber = getRandomNumber(1000000, 10000000);
     const myPercent = getRandomNumber(1, 5);
-    setNumber(myNumber.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}));
+    setNumber(
+      myNumber.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })
+    );
     setPercent(myPercent);
   }, []);
 
@@ -25,7 +30,7 @@ const SalaryDefinitionTotalTax = () => {
             marginBottom: "30px",
           }}
         >
-          <div style={{marginRight: "10px"}}>
+          <div style={{ marginRight: "10px" }}>
             <div
               style={{
                 color: "#272525",
